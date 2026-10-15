@@ -107,7 +107,9 @@ async function encodeOnServer({ fps, frames, drawFrame, onProgress, signal }) {
     for (let i = 0; i < frames; i++) {
       if (signal?.aborted) throw new Cancelled();
       const canvas = drawFrame(i / fps);
-      batch.push(await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.9)));
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.9));
+      if (!blob) throw new Error('Could not encode a video frame on this device.');
+      batch.push(blob);
       if (batch.length >= 24) await send();
       onProgress(((i + 1) / frames) * 0.9, `Rendering frame ${i + 1} of ${frames} (server encoding)`);
     }

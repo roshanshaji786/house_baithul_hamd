@@ -335,6 +335,13 @@ main { padding: 0.75rem 16px 2rem; max-width: 1500px; margin: 0 auto; }
 .toast.error { background: #8e2a1e; }
 @keyframes rise { from { transform: translateY(8px); opacity: 0; } }
 
+/* ---------- Mobile ---------- */
+/* Form controls at 16px so iOS Safari does not zoom the page when a
+   select or input is focused (it zooms anything smaller than 16px). */
+@media (max-width: 768px) {
+  select, input[type="text"], textarea { font-size: 16px; }
+}
+
 @media (max-width: 600px) {
   .engine-bar { margin-left: 0; width: 100%; }
   .engine-bar select { flex: 1; min-width: 0; width: 100%; }
@@ -344,5 +351,38 @@ main { padding: 0.75rem 16px 2rem; max-width: 1500px; margin: 0 auto; }
   .viewer-controls .segmented { width: 100%; }
   .viewer-controls .segmented button { flex: 1; }
   .actions .btn { flex: 1; }
+
+  /* The section tabs become a sticky bar once the top bar scrolls away,
+     so switching Design / 3D house / Saved never needs scrolling back up. */
+  .tabs {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--bg);
+    box-shadow: 0 1px 0 var(--border);
+    padding-top: 0.5rem;
+  }
+  .tabs button { padding: 0.55rem 0.75rem; }
+
+  /* Room list rows: let the text column shrink instead of pushing the
+     reorder buttons off screen. */
+  .room-order li { grid-template-columns: auto 44px minmax(0, 1fr) auto; }
+  .room-order li > span.small { min-width: 0; overflow-wrap: anywhere; }
+
+  /* Slightly larger touch targets for quick picks and element tabs. */
+  .swatch-row button { width: 32px; height: 32px; }
+  .element-tabs button { min-height: 36px; }
+  .spec-list { grid-template-columns: 1fr; gap: 0 0.75rem; }
+  .spec-list dd { margin-bottom: 0.35rem; }
+
+  /* Keep long words (file names, style descriptions) from forcing
+     horizontal scrolling. */
+  .file-item .name, .chip, .option { overflow-wrap: anywhere; }
+  .fit-help { font-size: 0.85rem; }
+
+  /* Respect notches and home indicators. */
+  .toasts { bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+  .footer { padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
+  main { padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

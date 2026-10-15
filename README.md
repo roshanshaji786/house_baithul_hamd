@@ -203,8 +203,17 @@ tools/             sample photo generator
 ```bash
 npm run dev            # server with auto-restart
 npm test               # unit tests (geometry, styles, conflicts, furniture, prompts, AI adapters)
+npm run test:browser   # end-to-end tests in a real headless Chromium (WebGL via SwiftShader)
+npm run test:all       # both suites
 npm run build:static   # static site in dist/
 ```
+
+The browser tests need no installation or GPU: a headless Chromium with software WebGL
+ships as the devDependency `@sparticuz/chromium` and is unpacked on first run. They cover
+the full user journey — uploading, quality checks, rendering every room type, the before/after
+slider, single-element edits, projects, the 3D house, MP4/GLB export, persistence, the
+static build used on GitHub Pages, and a mobile viewport (no horizontal overflow, sticky
+tabs, touch input).
 
 ## Disclaimer
 

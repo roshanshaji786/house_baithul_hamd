@@ -1,0 +1,48 @@
+name: Bug report
+description: Something doesn't look or work right
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for reporting! Screenshots help a lot. Please don't share photos of homes you don't have permission to share.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where?
+      options:
+        - Uploading photos or references
+        - Room box
+        - Free preview render
+        - AI render (OpenAI / Gemini)
+        - Edit one element
+        - 3D house / walkthrough
+        - MP4 or GLB download
+        - Something else
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: Which version?
+      options:
+        - Live demo (GitHub Pages)
+        - Self-hosted (npm start)
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Chrome 140 on Android, Safari on iPhone 15, Firefox on Windows
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or console errors
+      description: Drag images here. For errors, press F12 and copy anything red from the Console.

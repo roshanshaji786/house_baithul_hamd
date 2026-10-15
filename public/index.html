@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shell to Home – See your bare-shell house finished, free in your browser</title>
+  <meta name="description" content="Shell to Home: upload a photo of a bare-shell or unfinished room or house and see it finished: flooring, paint, ceiling, lighting and furniture in your style. Before/after slider, 3D walkthrough and MP4 video. Free, private, no sign-up.">
+  <meta name="keywords" content="shell to home, bare shell house, home renovation visualizer, unfinished house, construction visualization, interior design app, before and after, room makeover, AI interior design, 3D walkthrough, house exterior design, Indian modern interior">
+  <meta name="author" content="roshanshaji786">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#1f6f6b">
+  <meta name="application-name" content="Shell to Home">
+  <meta name="apple-mobile-web-app-title" content="Shell to Home">
+  <link rel="canonical" href="https://roshanshaji786.github.io/house_baithul_hamd/">
+
+  <!-- Social sharing previews (Facebook, LinkedIn, WhatsApp, X/Twitter, Slack...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shell to Home">
+  <meta property="og:title" content="Shell to Home – see your bare-shell house finished before you build">
+  <meta property="og:description" content="Turn photos of bare walls and concrete into a finished, styled home. Pick a style or add reference images, compare before/after, then walk through it in 3D. Free and open source.">
+  <meta property="og:url" content="https://roshanshaji786.github.io/house_baithul_hamd/">
+  <meta property="og:image" content="https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="An unfinished room with bare brick and concrete, and the same room finished with flooring, paint, lighting and furniture">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shell to Home – see your bare-shell house finished before you build">
+  <meta name="twitter:description" content="Photos of bare walls in, finished rooms out. Before/after slider, 3D walkthrough and MP4 video. Free and open source.">
+  <meta name="twitter:image" content="https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Structured data so search engines understand what this page is. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Shell to Home",
+    "alternateName": "ShellToHome",
+    "url": "https://roshanshaji786.github.io/house_baithul_hamd/",
+    "image": "https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg",
+    "description": "Turn photos of an unfinished house into finished, styled renders with a before/after slider, single-element edits, a 3D walkthrough and MP4 video export.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any (web browser)",
+    "browserRequirements": "Requires JavaScript and WebGL",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Upload photos of unfinished rooms or a house exterior",
+      "Reference images with roles: overall style, flooring, kitchen, colour palette, furniture",
+      "Preset styles: modern minimalist, Scandinavian, luxury contemporary, Indian modern, industrial loft",
+      "Before/after slider and side-by-side comparison",
+      "Edit one element at a time: flooring, walls, ceiling, lighting, fixtures, cabinets, furniture",
+      "3D house walkthrough with MP4 video and GLB model download"
+    ],
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/roshanshaji786/house_baithul_hamd"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is it free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free preview, 3D walkthrough and MP4 export run in your browser at no cost. Optional photo-real AI renders use your own OpenAI or Google Gemini API key in the self-hosted version." } },
+      { "@type": "Question", "name": "Are my photos uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Photos stay in your browser unless you choose a paid AI engine in the self-hosted version, which sends them only to that provider." } },
+      { "@type": "Question", "name": "What photos work best?", "acceptedAnswer": { "@type": "Answer", "text": "Stand in the doorway, face the far wall straight on and hold the phone level, in daylight or with lights on." } },
+      { "@type": "Question", "name": "Is this a construction plan?", "acceptedAnswer": { "@type": "Answer", "text": "No. Renders, videos and 3D models are visual previews with estimated sizes, not structural or engineering drawings." } }
+    ]
+  }
+  </script>
+  <!-- Browser libraries: served from node_modules by the local server, or copied into vendor/ by the static build. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/addons/",
+      "mp4-muxer": "./vendor/mp4-muxer/mp4-muxer.mjs"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <noscript><p style="padding:1rem">Shell to Home needs JavaScript and WebGL. Please enable JavaScript to turn photos of your unfinished house into finished, styled rooms.</p></noscript>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15 16 5l12 10v12H4z" fill="currentColor"/><rect x="13" y="18" width="6" height="9" fill="var(--surface)"/></svg>
+      <span>Shell to Home</span>
+    </div>
+    <div class="project-bar">
+      <label class="sr-only" for="project-select">Project</label>
+      <select id="project-select" title="Switch project"></select>
+      <button class="icon-btn" id="project-new" type="button" title="New project" aria-label="New project">＋</button>
+      <button class="icon-btn" id="project-rename" type="button" title="Rename project" aria-label="Rename project">✎</button>
+      <button class="icon-btn" id="project-delete" type="button" title="Delete project" aria-label="Delete project">🗑</button>
+    </div>
+    <div class="engine-bar">
+      <label for="engine-select">Render engine</label>
+      <select id="engine-select"></select>
+    </div>
+  </header>
+
+  <div class="disclaimer" id="disclaimer" role="note">
+    <strong>Visual preview only.</strong>
+    Renders show how finishes could look. They are not structural, engineering or construction plans, and sizes are rough estimates.
+    Check anything structural, electrical or plumbing with a qualified professional.
+    <button type="button" class="link-btn" id="disclaimer-hide">Hide</button>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-btn-design" aria-controls="tab-design" aria-selected="true" data-tab="design">Design</button>
+    <button role="tab" id="tab-btn-house" aria-controls="tab-house" aria-selected="false" data-tab="house">3D house &amp; video</button>
+    <button role="tab" id="tab-btn-saved" aria-controls="tab-saved" aria-selected="false" data-tab="saved">Saved <span class="count" id="saved-count">0</span></button>
+  </nav>
+
+  <main id="main">
+    <!-- ======================= DESIGN ======================= -->
+    <section id="tab-design" role="tabpanel" aria-labelledby="tab-btn-design" class="design-grid">
+      <aside class="inputs">
+        <section class="card" aria-labelledby="photos-title">
+          <div class="card-head">
+            <h2 id="photos-title"><span class="step">1</span> Photos of your space</h2>
+            <button type="button" class="link-btn" id="load-samples">Try sample photos</button>
+          </div>
+          <div class="dropzone" id="photo-drop" tabindex="0" role="button" aria-describedby="photo-drop-help">
+            <input type="file" id="photo-input" accept="image/*" multiple hidden>
+            <p><strong>Drag photos here</strong> or click to choose</p>
+            <p class="muted" id="photo-drop-help">Bare walls, exposed concrete or brick, empty floors. For best results stand in a doorway and face the far wall straight on.</p>
+          </div>
+          <ul class="file-list" id="photo-list" aria-label="Uploaded photos"></ul>
+        </section>
+
+        <section class="card" aria-labelledby="style-title">
+          <h2 id="style-title"><span class="step">2</span> Style</h2>
+          <h3>Reference images <span class="muted">(optional, up to 5)</span></h3>
+          <div class="dropzone small" id="ref-drop" tabindex="0" role="button" aria-describedby="ref-drop-help">
+            <input type="file" id="ref-input" accept="image/*" multiple hidden>
+            <p><strong>Add references</strong>: a room you like, a floor sample, a colour palette…</p>
+            <p class="muted" id="ref-drop-help">Give each one a role so the app knows what it controls. Used for style only.</p>
+          </div>
+          <ul class="file-list refs" id="ref-list" aria-label="Reference images"></ul>
+          <div id="ai-check-box" hidden>
+            <button type="button" class="btn secondary small" id="ai-check">Check references with AI</button>
+            <span class="muted">Claude looks for layout or scale conflicts (paid).</span>
+          </div>
+
+          <h3 id="preset-title">Preset style</h3>
+          <p class="muted" id="preset-help">Pick a look for your space.</p>
+          <div class="style-grid" id="style-grid" role="radiogroup" aria-labelledby="preset-title"></div>
+        </section>
+      </aside>
+
+      <section class="workspace card" aria-labelledby="workspace-title">
+        <div class="workspace-head">
+          <div>
+            <h2 id="workspace-title"><span class="step">3</span> <span id="workspace-photo-name">Your finished space</span></h2>
+            <p class="muted small" id="room-size"></p>
+          </div>
+          <div class="toolbar">
+            <label class="inline">Room
+              <select id="room-type"></select>
+            </label>
+            <button type="button" class="btn secondary" id="fit-toggle" aria-pressed="false">Adjust room box</button>
+            <button type="button" class="btn primary" id="render-btn">Render</button>
+          </div>
+        </div>
+
+        <div class="stale" id="stale-banner" hidden>
+          <span>Settings changed since this render.</span>
+          <button type="button" class="btn small primary" id="stale-update">Update render</button>
+          <label class="inline small"><input type="checkbox" id="auto-update"> Update automatically</label>
+        </div>
+
+        <div class="viewer" id="viewer">
+          <div class="empty" id="viewer-empty">
+            <p><strong>Add a photo to begin.</strong></p>
+            <p class="muted">Then choose a style or add reference images and press Render. The free preview runs entirely in your browser.</p>
+          </div>
+        </div>
+
+        <div class="progress" id="progress" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <span id="progress-text">Rendering…</span>
+        </div>
+        <div class="error-box" id="render-error" role="alert" hidden></div>
+
+        <div class="viewer-controls" id="viewer-controls" hidden>
+          <div class="segmented" role="group" aria-label="Comparison view">
+            <button type="button" data-compare="slider" aria-pressed="true">Slider</button>
+            <button type="button" data-compare="side" aria-pressed="false">Side by side</button>
+            <button type="button" data-compare="after" aria-pressed="false">After only</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="save-btn">Save</button>
+            <button type="button" class="btn secondary" id="download-btn">Download</button>
+            <button type="button" class="btn secondary" id="download-compare-btn">Download before/after</button>
+          </div>
+        </div>
+
+        <div class="render-info" id="render-info"></div>
+
+        <details class="card inset" id="editor" open>
+          <summary><h3>Edit one element</h3><span class="muted small">Change just the floor, the walls, the cabinets… everything else stays the same.</span></summary>
+          <div class="element-tabs" id="element-tabs" role="tablist" aria-label="Elements"></div>
+          <div class="element-form" id="element-form"></div>
+        </details>
+
+        <div class="history" id="history" aria-label="Render history"></div>
+      </section>
+    </section>
+
+    <!-- ======================= 3D HOUSE ======================= -->
+    <section id="tab-house" role="tabpanel" aria-labelledby="tab-btn-house" hidden>
+      <div class="house-grid">
+        <section class="card house-viewer-card" aria-labelledby="house-title">
+          <div class="card-head">
+            <h2 id="house-title">3D house &amp; walkthrough</h2>
+            <div class="segmented" role="group" aria-label="3D view mode">
+              <button type="button" data-house-mode="walk" aria-pressed="true">Walkthrough</button>
+              <button type="button" data-house-mode="explore" aria-pressed="false">Explore</button>
+            </div>
+          </div>
+          <div class="house-stage" id="house-stage">
+            <div class="empty" id="house-empty">
+              <p><strong>Render at least one room first.</strong></p>
+              <p class="muted">The 3D house is built from your photos and uses the same style and references as your renders.</p>
+            </div>
+          </div>
+          <div class="player" id="house-player" hidden>
+            <button type="button" class="btn icon" id="house-play" aria-label="Play">▶</button>
+            <input type="range" id="house-scrub" min="0" max="1000" value="0" aria-label="Walkthrough position">
+            <span class="muted small" id="house-time">0:00 / 0:00</span>
+          </div>
+        </section>
+        <aside class="card house-side">
+          <h3>Rooms in the walkthrough</h3>
+          <p class="muted small">Each rendered photo becomes a room. Use the arrows to reorder; untick to leave a room out.</p>
+          <ol class="room-order" id="room-order"></ol>
+          <button type="button" class="btn secondary small" id="house-rebuild">Rebuild 3D house</button>
+
+          <h3>Video</h3>
+          <div class="form-row">
+            <label for="video-quality">Quality</label>
+            <select id="video-quality">
+              <option value="720">720p (faster)</option>
+              <option value="1080">1080p</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="video-speed">Pace</label>
+            <select id="video-speed">
+              <option value="1.25">Relaxed</option>
+              <option value="1" selected>Normal</option>
+              <option value="0.75">Quick</option>
+            </select>
+          </div>
+          <button type="button" class="btn primary" id="video-btn">Download walkthrough MP4</button>
+          <div class="video-progress" id="video-progress" hidden>
+            <progress id="video-bar" max="100" value="0"></progress>
+            <span id="video-status" class="small">Preparing…</span>
+            <button type="button" class="link-btn" id="video-cancel">Cancel</button>
+          </div>
+          <button type="button" class="btn secondary small" id="glb-btn">Download 3D model (.glb)</button>
+          <p class="muted small">The 3D house is a simplified model made from your photos: each room is a box textured with its finished render, with 3D furniture from the free preview. It is for visualising, not for measurements.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================= SAVED ======================= -->
+    <section id="tab-saved" role="tabpanel" aria-labelledby="tab-btn-saved" hidden>
+      <div class="card">
+        <h2>Saved renders</h2>
+        <p class="muted">Renders you save are kept in this browser with the project.</p>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Plain-HTML introduction: helps first-time visitors and search engines. -->
+  <section class="about" aria-labelledby="about-title">
+    <h2 id="about-title">See your bare-shell house finished – before you build</h2>
+    <p>Shell to Home turns a phone photo of a bare-shell room or house (bare brick, exposed concrete, empty floors, open ceilings) into a finished, modern home: flooring, wall paint, ceiling, lighting, fixtures and furniture. It is made for homeowners and small contractors who want to try ideas before spending money.</p>
+    <div class="about-grid">
+      <div>
+        <h3>Your style, your references</h3>
+        <p>Pick a style – modern minimalist, Scandinavian, luxury contemporary, Indian modern or industrial loft – or add up to five reference images and tell the app what each one controls: overall style, flooring, kitchen, colour palette or furniture.</p>
+      </div>
+      <div>
+        <h3>Before and after</h3>
+        <p>Drag the slider to compare the bare room with the finished one, or view them side by side. Change only the floor, the paint or the kitchen cabinets and everything else stays the same.</p>
+      </div>
+      <div>
+        <h3>3D walkthrough and video</h3>
+        <p>Your rooms become a 3D house you can walk through in the browser. Download the walkthrough as an MP4 video to share with family or your builder, or the 3D model as a GLB file.</p>
+      </div>
+      <div>
+        <h3>Free, private and open source</h3>
+        <p>The preview runs entirely in your browser – no sign-up, no uploads. The <a href="https://github.com/roshanshaji786/house_baithul_hamd">source code is on GitHub</a> under the MIT licence, with optional photo-real AI renders when you self-host it with your own API key.</p>
+      </div>
+    </div>
+    <h3>Questions</h3>
+    <details><summary>Is it really free?</summary><p>Yes. The preview, 3D walkthrough and MP4 export cost nothing. Photo-real AI renders are optional and use your own OpenAI or Google Gemini key in the self-hosted version.</p></details>
+    <details><summary>Are my photos uploaded?</summary><p>No. They stay in this browser. Only if you self-host with an AI engine and choose it are they sent – to that provider only.</p></details>
+    <details><summary>What photos work best?</summary><p>Stand in the doorway, face the far wall straight on and hold the phone level, in daylight or with the lights on. Then use “Adjust room box” to line up the far wall.</p></details>
+    <details><summary>Can I use it for a full house exterior?</summary><p>Yes. Choose “Full house exterior” as the room type to see the facade rendered and painted, with windows, a front door, a paved path, planting and outdoor lights.</p></details>
+    <details><summary>Is this a construction plan?</summary><p>No. Images, videos and 3D models are visual previews with rough size estimates. Check anything structural, electrical or plumbing with a qualified professional.</p></details>
+  </section>
+
+  <footer class="footer">
+    <p><a href="https://github.com/roshanshaji786/house_baithul_hamd">Open source on GitHub</a> · MIT licence · Star the repo if it helped you!</p>
+    <p><strong>Disclaimer:</strong> images and videos from this app are visual previews for homeowners and small contractors. They are not architectural, structural or engineering drawings. Reference images are used for style only; the app does not reproduce trademarked products or logos.</p>
+    <p class="muted small">Your photos stay in this browser. They are only sent to an AI service when you choose a paid render engine.</p>
+  </footer>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+</body>
+</html>

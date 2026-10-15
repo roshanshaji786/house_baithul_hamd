@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://roshanshaji786.github.io/house_baithul_hamd/sitemap.xml

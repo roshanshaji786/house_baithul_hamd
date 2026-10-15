@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: User guide
+    url: https://github.com/roshanshaji786/house_baithul_hamd/blob/main/docs/USER_GUIDE.md
+    about: Tips for photos, the room box, references and the 3D walkthrough.
+  - name: Security issue
+    url: https://github.com/roshanshaji786/house_baithul_hamd/security/advisories/new
+    about: Please report security problems privately.

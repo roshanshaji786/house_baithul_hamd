@@ -3,24 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Upload photos of an unfinished house and see it finished in your style, then walk through it in 3D.">
-  <title>Home Finish Visualizer</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 15 16 5l12 10v12H4z' fill='%231f6f6b'/%3E%3Crect x='13' y='18' width='6' height='9' fill='%23f4efe6'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="/css/styles.css">
-  <!-- Browser libraries are served from node_modules by the local server. -->
+  <title>Home Finish Visualizer – See your unfinished house finished, free in your browser</title>
+  <meta name="description" content="Upload a photo of an unfinished room or house and see it finished: flooring, paint, ceiling, lighting and furniture in your style. Before/after slider, 3D walkthrough and MP4 video. Free, private, no sign-up.">
+  <meta name="keywords" content="home renovation visualizer, unfinished house, construction visualization, interior design app, before and after, room makeover, AI interior design, 3D walkthrough, house exterior design, Indian modern interior">
+  <meta name="author" content="roshanshaji786">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#1f6f6b">
+  <link rel="canonical" href="https://roshanshaji786.github.io/house_baithul_hamd/">
+
+  <!-- Social sharing previews (Facebook, LinkedIn, WhatsApp, X/Twitter, Slack...) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Home Finish Visualizer">
+  <meta property="og:title" content="See your unfinished house finished – before you build">
+  <meta property="og:description" content="Turn photos of bare walls and concrete into a finished, styled home. Pick a style or add reference images, compare before/after, then walk through it in 3D. Free and open source.">
+  <meta property="og:url" content="https://roshanshaji786.github.io/house_baithul_hamd/">
+  <meta property="og:image" content="https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="An unfinished room with bare brick and concrete, and the same room finished with flooring, paint, lighting and furniture">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="See your unfinished house finished – before you build">
+  <meta name="twitter:description" content="Photos of bare walls in, finished rooms out. Before/after slider, 3D walkthrough and MP4 video. Free and open source.">
+  <meta name="twitter:image" content="https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Structured data so search engines understand what this page is. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Home Finish Visualizer",
+    "alternateName": "Baithul Hamd Home Finish Visualizer",
+    "url": "https://roshanshaji786.github.io/house_baithul_hamd/",
+    "image": "https://roshanshaji786.github.io/house_baithul_hamd/assets/og-image.jpg",
+    "description": "Turn photos of an unfinished house into finished, styled renders with a before/after slider, single-element edits, a 3D walkthrough and MP4 video export.",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Any (web browser)",
+    "browserRequirements": "Requires JavaScript and WebGL",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Upload photos of unfinished rooms or a house exterior",
+      "Reference images with roles: overall style, flooring, kitchen, colour palette, furniture",
+      "Preset styles: modern minimalist, Scandinavian, luxury contemporary, Indian modern, industrial loft",
+      "Before/after slider and side-by-side comparison",
+      "Edit one element at a time: flooring, walls, ceiling, lighting, fixtures, cabinets, furniture",
+      "3D house walkthrough with MP4 video and GLB model download"
+    ],
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/roshanshaji786/house_baithul_hamd"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Is it free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The free preview, 3D walkthrough and MP4 export run in your browser at no cost. Optional photo-real AI renders use your own OpenAI or Google Gemini API key in the self-hosted version." } },
+      { "@type": "Question", "name": "Are my photos uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Photos stay in your browser unless you choose a paid AI engine in the self-hosted version, which sends them only to that provider." } },
+      { "@type": "Question", "name": "What photos work best?", "acceptedAnswer": { "@type": "Answer", "text": "Stand in the doorway, face the far wall straight on and hold the phone level, in daylight or with lights on." } },
+      { "@type": "Question", "name": "Is this a construction plan?", "acceptedAnswer": { "@type": "Answer", "text": "No. Renders, videos and 3D models are visual previews with estimated sizes, not structural or engineering drawings." } }
+    ]
+  }
+  </script>
+  <!-- Browser libraries: served from node_modules by the local server, or copied into vendor/ by the static build. -->
   <script type="importmap">
   {
     "imports": {
-      "three": "/vendor/three/build/three.module.js",
-      "three/addons/": "/vendor/three/addons/",
-      "mp4-muxer": "/vendor/mp4-muxer/mp4-muxer.mjs"
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/addons/",
+      "mp4-muxer": "./vendor/mp4-muxer/mp4-muxer.mjs"
     }
   }
   </script>
-  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="js/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <noscript><p style="padding:1rem">Home Finish Visualizer needs JavaScript and WebGL. Please enable JavaScript to turn photos of your unfinished house into finished, styled rooms.</p></noscript>
 
   <header class="topbar">
     <div class="brand">
@@ -216,7 +281,38 @@
     </section>
   </main>
 
+  <!-- Plain-HTML introduction: helps first-time visitors and search engines. -->
+  <section class="about" aria-labelledby="about-title">
+    <h2 id="about-title">See your unfinished house finished – before you build</h2>
+    <p>Home Finish Visualizer turns a phone photo of an unfinished room or house (bare brick, exposed concrete, empty floors, open ceilings) into a finished, modern home: flooring, wall paint, ceiling, lighting, fixtures and furniture. It is made for homeowners and small contractors who want to try ideas before spending money.</p>
+    <div class="about-grid">
+      <div>
+        <h3>Your style, your references</h3>
+        <p>Pick a style – modern minimalist, Scandinavian, luxury contemporary, Indian modern or industrial loft – or add up to five reference images and tell the app what each one controls: overall style, flooring, kitchen, colour palette or furniture.</p>
+      </div>
+      <div>
+        <h3>Before and after</h3>
+        <p>Drag the slider to compare the bare room with the finished one, or view them side by side. Change only the floor, the paint or the kitchen cabinets and everything else stays the same.</p>
+      </div>
+      <div>
+        <h3>3D walkthrough and video</h3>
+        <p>Your rooms become a 3D house you can walk through in the browser. Download the walkthrough as an MP4 video to share with family or your builder, or the 3D model as a GLB file.</p>
+      </div>
+      <div>
+        <h3>Free, private and open source</h3>
+        <p>The preview runs entirely in your browser – no sign-up, no uploads. The <a href="https://github.com/roshanshaji786/house_baithul_hamd">source code is on GitHub</a> under the MIT licence, with optional photo-real AI renders when you self-host it with your own API key.</p>
+      </div>
+    </div>
+    <h3>Questions</h3>
+    <details><summary>Is it really free?</summary><p>Yes. The preview, 3D walkthrough and MP4 export cost nothing. Photo-real AI renders are optional and use your own OpenAI or Google Gemini key in the self-hosted version.</p></details>
+    <details><summary>Are my photos uploaded?</summary><p>No. They stay in this browser. Only if you self-host with an AI engine and choose it are they sent – to that provider only.</p></details>
+    <details><summary>What photos work best?</summary><p>Stand in the doorway, face the far wall straight on and hold the phone level, in daylight or with the lights on. Then use “Adjust room box” to line up the far wall.</p></details>
+    <details><summary>Can I use it for a full house exterior?</summary><p>Yes. Choose “Full house exterior” as the room type to see the facade rendered and painted, with windows, a front door, a paved path, planting and outdoor lights.</p></details>
+    <details><summary>Is this a construction plan?</summary><p>No. Images, videos and 3D models are visual previews with rough size estimates. Check anything structural, electrical or plumbing with a qualified professional.</p></details>
+  </section>
+
   <footer class="footer">
+    <p><a href="https://github.com/roshanshaji786/house_baithul_hamd">Open source on GitHub</a> · MIT licence · Star the repo if it helped you!</p>
     <p><strong>Disclaimer:</strong> images and videos from this app are visual previews for homeowners and small contractors. They are not architectural, structural or engineering drawings. Reference images are used for style only; the app does not reproduce trademarked products or logos.</p>
     <p class="muted small">Your photos stay in this browser. They are only sent to an AI service when you choose a paid render engine.</p>
   </footer>

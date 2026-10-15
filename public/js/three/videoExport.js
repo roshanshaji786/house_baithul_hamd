@@ -48,7 +48,7 @@ export async function exportMp4({ width, height, fps = 30, duration, drawFrame, 
   const config = await findEncoderConfig(width, height, fps);
   if (config) return encodeInBrowser({ config, width, height, fps, frames, drawFrame, onProgress, signal });
   if (serverAvailable) return encodeOnServer({ fps, frames, drawFrame, onProgress, signal });
-  throw new Error('This browser cannot create MP4 video, and the server has no ffmpeg. Try Chrome, Edge or Safari, or install ffmpeg and restart the server.');
+  throw new Error('This browser cannot create MP4 video. Please try the latest Chrome, Edge or Safari. (Self-hosted copies can also encode on the server if ffmpeg is installed.)');
 }
 
 const yieldToUi = () => new Promise((r) => setTimeout(r, 0));
@@ -92,15 +92,15 @@ async function encodeInBrowser({ config, width, height, fps, frames, drawFrame, 
 }
 
 async function encodeOnServer({ fps, frames, drawFrame, onProgress, signal }) {
-  const start = await fetch('/api/video/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fps }) });
+  const start = await fetch('api/video/jobs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fps }) });
   const job = await start.json().catch(() => ({}));
   if (!start.ok) throw new Error(job.error ?? 'The server could not start the video.');
-  const cancel = () => fetch(`/api/video/jobs/${job.id}`, { method: 'DELETE' }).catch(() => {});
+  const cancel = () => fetch(`api/video/jobs/${job.id}`, { method: 'DELETE' }).catch(() => {});
   try {
     let batch = [];
     const send = async () => {
       if (!batch.length) return;
-      const res = await fetch(`/api/video/jobs/${job.id}/frames`, { method: 'POST', headers: { 'Content-Type': 'application/octet-stream' }, body: new Blob(batch) });
+      const res = await fetch(`api/video/jobs/${job.id}/frames`, { method: 'POST', headers: { 'Content-Type': 'application/octet-stream' }, body: new Blob(batch) });
       if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? 'Uploading frames failed.');
       batch = [];
     };
@@ -113,7 +113,7 @@ async function encodeOnServer({ fps, frames, drawFrame, onProgress, signal }) {
     }
     await send();
     onProgress(0.95, 'The server is encoding the MP4…');
-    const res = await fetch(`/api/video/jobs/${job.id}/finish`, { method: 'POST' });
+    const res = await fetch(`api/video/jobs/${job.id}/finish`, { method: 'POST' });
     if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? 'Video encoding failed.');
     const blob = await res.blob();
     onProgress(1, 'Done');

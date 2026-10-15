@@ -1,119 +1,223 @@
-# Baithul Hamd - Home Finish Visualizer
+<div align="center">
 
-Upload photos of an unfinished house (bare walls, exposed brick or concrete, empty floors) and see each space **finished as a modern home**: flooring, wall paint, ceiling, lighting, fixtures and furniture. You can steer the style with your own reference images, compare before and after, change one element at a time, and turn the rooms into a **3D walkthrough you can download as an MP4**.
+# 🏠 Home Finish Visualizer
 
-The app is for homeowners and small contractors. Renders are **visual previews, not structural or engineering plans** (the app says so on screen and in every comparison image and video).
+### See your unfinished house finished, before you spend a rupee, dollar or dirham.
 
-## Quick start
+Turn a phone photo of bare brick, concrete and empty floors into a **finished, styled home**.<br>
+Compare **before and after**, change **one element at a time**, then **walk through it in 3D** and download the video.
 
-You need [Node.js](https://nodejs.org) **20.12 or newer**.
+[![Live demo](https://img.shields.io/badge/▶_Try_it_live-free,_no_sign--up-1f6f6b?style=for-the-badge)](https://roshanshaji786.github.io/house_baithul_hamd/)
+[![GitHub stars](https://img.shields.io/github/stars/roshanshaji786/house_baithul_hamd?style=for-the-badge&logo=github&color=b08d57)](https://github.com/roshanshaji786/house_baithul_hamd/stargazers)
+
+[![CI](https://github.com/roshanshaji786/house_baithul_hamd/actions/workflows/ci.yml/badge.svg)](https://github.com/roshanshaji786/house_baithul_hamd/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Node 20.12+](https://img.shields.io/badge/node-%E2%89%A520.12-339933?logo=node.js&logoColor=white)
+![three.js](https://img.shields.io/badge/3D-three.js-000000?logo=three.js)
+![No API key needed](https://img.shields.io/badge/API_key-not_needed-1f6f6b)
+![Privacy](https://img.shields.io/badge/photos-stay_in_your_browser-1f6f6b)
+
+<img src="docs/images/before-after-slider.gif" alt="Animated before and after slider: a bare brick and concrete room becomes a finished living room with a fluted wood wall, marble floor, cove lighting and furniture" width="720">
+
+**[Try the live demo »](https://roshanshaji786.github.io/house_baithul_hamd/)** · [User guide](docs/USER_GUIDE.md) · [How it works](docs/ARCHITECTURE.md) · [Report a bug](https://github.com/roshanshaji786/house_baithul_hamd/issues/new/choose)
+
+</div>
+
+---
+
+## Why this exists
+
+Building a house takes years, and the hardest part is **imagining the finished home while you're standing in a shell of bare blockwork**. Which floor? What colour? Will a dark feature wall make the room feel small? Interior designers and 3D visualisers are expensive, and most "AI interior" apps need an account, upload your photos to a server, and ignore the room you actually have.
+
+**Home Finish Visualizer** works with *your* photos and *your* room's real shape. It runs free in your browser, and your photos never leave your device. The repository is named after *Baithul Hamd*, the house it was made for.
+
+## One photo, five styles
+
+<img src="docs/images/one-photo-five-styles.jpg" alt="The same unfinished room rendered in five styles: modern minimalist, Scandinavian, luxury contemporary, Indian modern and industrial loft" width="100%">
+
+## Every room, and the outside too
+
+| | |
+| --- | --- |
+| <img src="docs/images/before-after-bedroom-indian.jpg" alt="Bedroom before and after, Indian modern style"> | <img src="docs/images/before-after-kitchen-scandinavian.jpg" alt="Kitchen before and after, Scandinavian style"> |
+| <img src="docs/images/before-after-bathroom-luxury.jpg" alt="Bathroom before and after, luxury contemporary style"> | <img src="docs/images/before-after-exterior-luxury.jpg" alt="House exterior before and after, luxury contemporary style"> |
+
+## Walk through your future home in 3D
+
+<img src="docs/images/walkthrough.gif" alt="3D walkthrough: approaching the finished house, an overview of all rooms, then walking through the living room" width="720">
+
+Every rendered room becomes part of a **3D house**. Preview the walkthrough in your browser, orbit around a dollhouse view, and download it as an **MP4 video** to send to family or your builder, or as a **3D model (.glb)**.
+
+## Features
+
+- 📷 **Drag-and-drop photos** of rooms or the full house exterior, with thumbnails and clear messages when a photo is **too small, too dark, blurry or unclear**.
+- 🎨 **Five preset styles**: modern minimalist, Scandinavian, luxury contemporary, Indian modern, industrial loft.
+- 🖼️ **Up to 5 reference images**, each with a label and a **role**: *overall style, flooring, kitchen, colour palette* or *furniture*. Each role only changes its own part of the room, and every render lists **which references were used and how**.
+- ⚠️ **Layout-safe**: if a reference doesn't fit your room's layout or scale, the app **keeps your photo's layout and tells you what it ignored**.
+- ↔️ **Before/after slider**, side by side, or after only. Switching styles or swapping a reference updates the render without re-uploading.
+- 🧱 **Edit one element at a time**: just the floor, the paint, the ceiling, the lighting, the fixtures, the kitchen cabinets or the furniture.
+- 💾 **Save and download** every finished image, or a labelled before/after image ready for WhatsApp.
+- 🏠 **3D house, walkthrough video (MP4) and 3D model (GLB)** that use the same style and references as your renders.
+- 📱 **Mobile-friendly**, keyboard accessible, light and dark mode.
+- 🔒 **Private by default**: no account, no upload. Projects are saved in your browser.
+- 🤖 **Optional photo-real AI renders** with OpenAI or Google Gemini, and an AI reference check with Claude, when you self-host with your own API keys.
+
+<details>
+<summary><b>Screenshots</b></summary>
+
+| Design workspace | 3D house & video | Mobile |
+| --- | --- | --- |
+| <img src="docs/images/ui-desktop.png" alt="Design workspace with photo list, references, style presets and before/after slider"> | <img src="docs/images/ui-3d.png" alt="3D house tab with walkthrough preview, room order and video export"> | <img src="docs/images/ui-mobile.png" alt="The app on a phone" width="260"> |
+
+</details>
+
+## Try it
+
+### Option 1: Live demo (nothing to install)
+
+**👉 [roshanshaji786.github.io/house_baithul_hamd](https://roshanshaji786.github.io/house_baithul_hamd/)**
+
+Press **Try sample photos**, then **Render**. Everything runs in your browser: rendering, 3D, and video export in Chrome, Edge or Safari.
+
+### Option 2: Run it yourself
+
+You need [Node.js](https://nodejs.org) 20.12 or newer.
 
 ```bash
+git clone https://github.com/roshanshaji786/house_baithul_hamd.git
+cd house_baithul_hamd
 npm install
 npm start
 ```
 
-Open **http://localhost:3000** and press **Try sample photos**, then **Render**.
+Open **http://localhost:3000**. No API keys are needed for the free preview.
 
-No API keys are needed: the **Free preview** engine runs entirely in your browser. To use the paid AI engines, copy `.env.example` to `.env`, add a key, and restart.
+To enable the optional AI engines, copy `.env.example` to `.env`, add the keys you want and restart. To use the app from your phone on the same Wi-Fi, run `HOST=0.0.0.0 npm start`. Only do this on a network you trust: anyone on it could use your API keys.
 
-To use the app from a phone on the same Wi-Fi, start it with `HOST=0.0.0.0 npm start` and open `http://<your-computer's-IP>:3000`. Only do this on a network you trust: anyone on it could use your API keys.
+### Option 3: Host your own copy
 
-## What you can do
+`npm run build:static` creates `dist/`, a static site you can put on GitHub Pages, Netlify or any web host. Forks get a GitHub Pages deployment automatically from [`.github/workflows/pages.yml`](.github/workflows/pages.yml): enable *Settings › Pages › Source: GitHub Actions*.
 
-| Area | Features |
-| --- | --- |
-| **Upload** | Drag and drop (or tap to choose) photos and reference images, with a thumbnail for each. Clear messages when a photo is **too small, too dark, blurry or unclear**, with a "Use it anyway" option. HEIC photos get a tip on how to export them as JPEG. |
-| **Room types** | Living room, kitchen, bedroom, bathroom, full house exterior (set per photo). |
-| **Style** | Up to **5 reference images per project**, each with a label and a role: *overall style, flooring, kitchen, colour palette* or *furniture*. Without references, pick a preset: *Modern minimalist, Scandinavian, Luxury contemporary, Indian modern, Industrial loft*. |
-| **How references are used** | Each role only controls its own elements: a flooring reference changes the floor and nothing else, a palette sets wall and fabric colours, and so on. Each render lists the references it used and what each one changed. If a reference conflicts with the room's layout or scale (a kitchen reference on a bedroom, an outdoor scene for an interior, a "flooring sample" that is a whole room, a different framing), **the layout from your photo is kept and a warning explains what was ignored**. The optional AI reference check (Claude) adds a deeper check. |
-| **Renders** | Before/after **slider**, **side by side** or after only. Switching style, adding or swapping a reference, or changing the room type updates the render without re-uploading. With the free engine this happens automatically; with AI engines you click "Update render". |
-| **Edit one element** | Change just the flooring, walls and paint (feature wall, tiles), ceiling, lighting (mood, colour temperature, downlights), fixtures (metal finish, pendant, frames, doors), kitchen cabinets or vanity, or furniture. Everything else stays the same. |
-| **Save and download** | Save renders to the project (they appear on the Saved tab), download each finished image, or download a labelled before/after image. Projects are stored in your browser and survive reloads. |
-| **3D house & video** | Every rendered room becomes part of a **3D house**. Free-preview renders include real 3D furniture. Preview the **walkthrough** (exterior approach, house overview, a walk through each room) or orbit freely. **Download it as MP4** with a progress bar and cancel button, or download the **3D model (.glb)**. The video uses the same references and style as the renders. |
+## How it works (in 30 seconds)
 
-### Tips for good photos
+```mermaid
+flowchart LR
+  A["📷 Your photo"] --> B["📐 Room box<br/>(far wall + perspective)"]
+  C["🖼️ References<br/>+ roles"] --> D["🎨 Style spec<br/>per element"]
+  E["Preset style"] --> D
+  B --> F["🖌️ Repaint surfaces<br/>with the photo's own light"]
+  D --> F
+  F --> G["🛋️ 3D furniture<br/>placed in metres"]
+  G --> H["✨ Finished render"]
+  H --> I["🏠 3D house"]
+  I --> J["🎬 MP4 + GLB"]
+```
 
-- Stand in the doorway and **face the far wall straight on**, holding the phone level at chest height.
-- Take photos in daylight, or with lights on. Avoid pointing straight at a bright window.
-- After uploading, press **Adjust room box** and drag the corners onto the far wall's corners. This gives better perspective, furniture placement and 3D. The app tries to detect the box automatically.
+1. **Room box.** The app finds the far wall and the vanishing point, then works out the room's size in metres and what every pixel shows: floor, wall or ceiling. You can fine-tune this with **Adjust room box**.
+2. **Repaint with real light.** Each surface gets its new material in correct perspective, multiplied by the light and shadow from your own photo, so it still looks like *your* room. Windows keep their view, doorways get doors, and ceilings get cove lights or downlights.
+3. **Furniture in 3D.** Sofas, beds, kitchens, vanities, curtains and plants are placed in real metres, never in front of a doorway, and rendered with three.js through the same camera.
+4. **3D house.** Each finished image is projected back onto a 3D box of the room ("tour into the picture"), so you can walk in.
+
+Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Render engines
 
-| Engine | Cost | What it does |
+| Engine | Cost | Best for |
 | --- | --- | --- |
-| **Free preview** (default) | Free, runs in your browser | Fits a 3D "room box" to the photo and repaints every surface with real materials while keeping the photo's own light and shadow. Detects doors and windows (it keeps the view outside and adds frames and doors), adds downlights or cove lighting, and places 3D furniture that avoids doorways, with curtains at windows. Fast, private and consistent. It works best with straight-on photos, and is a stylised mock-up rather than a photo-real render. |
-| **OpenAI** | Paid API | Photo-real render using OpenAI image editing (`gpt-image-1` by default). Your photo is the first image and your references follow, each tagged with its role. Single-element edits of the floor, walls or ceiling use a mask so only that area changes. |
-| **Google Gemini** | Paid API | Photo-real render with Gemini's image model (`gemini-2.5-flash-image` by default), which handles several role-tagged reference images well. |
+| **Free preview** (default) | Free, runs in your browser | Fast, private, consistent previews. Works best with straight-on photos. Stylised rather than photo-real. |
+| **OpenAI** (`gpt-image-1`) | Paid API, self-hosted only | Photo-real renders. Single-element edits of the floor, walls or ceiling use a mask so only that area changes. |
+| **Google Gemini** (`gemini-2.5-flash-image`) | Paid API, self-hosted only | Photo-real renders that blend several role-tagged references well. |
 
-Both AI engines are instructed to keep the exact camera, room geometry and openings of your photo, and never to reproduce logos, brand names or trademarked products. AI models can still change details, so check the before/after.
+Both AI engines are told to keep your photo's camera, room shape, windows and doors, and never to copy logos, brands or trademarked products.
 
 ## Features that need a paid API or service
 
-Everything else in the app is free and runs locally: the free preview renderer, image checks, reference analysis and conflict warnings, element editing, saving, 3D house, walkthrough preview, MP4 export and GLB export.
+Everything else is **free and local**: the free preview renderer, image checks, reference analysis and conflict warnings, element editing, saving, the 3D house, walkthrough preview, MP4 export and GLB export.
 
-| Feature | Service | Setting in `.env` | Notes |
-| --- | --- | --- | --- |
-| Photo-real AI renders and AI single-element edits | **OpenAI Images API** (paid per image) | `OPENAI_API_KEY` (optional: `OPENAI_IMAGE_MODEL`, `OPENAI_IMAGE_QUALITY`, `OPENAI_INPUT_FIDELITY`) | `quality=medium` is a good balance. `input_fidelity=high` keeps the layout closer but costs more. |
-| Photo-real AI renders and AI single-element edits | **Google Gemini API** (paid per image) | `GEMINI_API_KEY` (optional: `GEMINI_IMAGE_MODEL`) | |
-| AI reference check: deeper layout/scale conflict detection plus a written style brief that is added to AI render prompts | **Anthropic Claude API** (paid per request) | `ANTHROPIC_API_KEY` (optional: `ANTHROPIC_MODEL`, default `claude-opus-5-5`) | Uses Claude's vision with a JSON-schema answer. Server-side fallback is enabled for declined requests. |
+| Feature | Service | `.env` setting |
+| --- | --- | --- |
+| Photo-real AI renders and AI single-element edits | **OpenAI Images API** (paid per image) | `OPENAI_API_KEY` (optional: `OPENAI_IMAGE_MODEL`, `OPENAI_IMAGE_QUALITY`, `OPENAI_INPUT_FIDELITY`) |
+| Photo-real AI renders and AI single-element edits | **Google Gemini API** (paid per image) | `GEMINI_API_KEY` (optional: `GEMINI_IMAGE_MODEL`) |
+| AI reference check: deeper layout/scale conflict detection plus a style brief for AI prompts | **Anthropic Claude API** (paid per request) | `ANTHROPIC_API_KEY` (optional: `ANTHROPIC_MODEL`, default `claude-opus-5-5`) |
 
-Not included, but available as paid services if you want to go further:
+Not included, but possible with paid services: **true 3D scanning** from many photos (photogrammetry or Gaussian splatting, e.g. Luma AI, Polycam, Matterport), and **AI-generated cinematic video** (e.g. Runway or Google Veo).
 
-- **True 3D reconstruction from photos** (photogrammetry or Gaussian splatting, e.g. Luma AI, Polycam, Matterport). The built-in 3D house is a simplified box model per room, built from one photo each.
-- **AI video generation** (e.g. Runway or Google Veo) for cinematic, photo-real walkthroughs. The built-in video is rendered from the 3D house.
+MP4 export is free. Chrome, Edge and Safari encode in the browser (WebCodecs). Other browsers use the self-hosted server's [ffmpeg](https://ffmpeg.org), if installed.
 
-**MP4 export** is free. Chrome, Edge and Safari encode it in the browser (WebCodecs). Other browsers fall back to the local server, which needs [ffmpeg](https://ffmpeg.org) installed (`FFMPEG_PATH` if it is not on your PATH).
+## FAQ
 
-## Privacy
+<details><summary><b>Is it really free?</b></summary>
 
-Photos, references and renders stay in your browser (IndexedDB). They are only sent somewhere when you choose an AI engine or the AI reference check, and then only to that provider, through your own server. API keys stay on the server and are never sent to the browser. A simple rate limit protects the paid endpoints.
+Yes. The preview, 3D walkthrough and MP4 export cost nothing and need no account. Only the optional photo-real AI engines cost money, billed by the provider to your own API key.
+</details>
 
-## How it works
+<details><summary><b>Are my photos uploaded?</b></summary>
+
+No. They stay in your browser (IndexedDB). They are only sent anywhere if you self-host with an AI engine and choose it, and then only to that provider through your own server. API keys never reach the browser.
+</details>
+
+<details><summary><b>What photos work best?</b></summary>
+
+Stand in the doorway, face the far wall straight on, hold the phone level, and shoot in daylight. See the [user guide](docs/USER_GUIDE.md#1-take-good-photos).
+</details>
+
+<details><summary><b>Can I use it for a client presentation?</b></summary>
+
+Yes. Use one project per client, download before/after images, and send the walkthrough MP4. The MIT licence also lets you fork and rebrand it.
+</details>
+
+<details><summary><b>Is this a construction drawing?</b></summary>
+
+No. Renders, videos and 3D models are **visual previews** with rough size estimates, not architectural, structural, electrical or engineering plans. Always check with qualified professionals.
+</details>
+
+## Roadmap
+
+- [ ] Corner (two-point perspective) photos in the free preview
+- [ ] More presets: Japandi, coastal, Kerala traditional, mid-century
+- [ ] Furniture drag-and-drop in the 3D view
+- [ ] Cost estimate per finish (materials list)
+- [ ] Share a project as a link
+- [ ] Translations (Hindi, Malayalam, Arabic…)
+
+Have an idea? [Open a feature request](https://github.com/roshanshaji786/house_baithul_hamd/issues/new/choose). Contributions are very welcome; see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Project structure
 
 ```
-public/                     the web app (plain ES modules, no build step)
-  index.html, css/styles.css
-  js/main.js                start-up
-  js/state.js               project store, auto-saved to IndexedDB
-  js/catalog.js             room types, reference roles, elements, presets (shared with the server)
-  js/lib/geometry.js        room box maths: camera, surfaces, room size, far-wall detection
-  js/lib/imageTools.js      loading, quality checks, colour palettes
-  js/render/styles.js       style specs: presets -> references (by role) -> one-element edits
-  js/render/references.js   reference analysis and layout/scale conflict warnings
-  js/render/materials.js    procedural materials (wood, herringbone, tiles, marble, terrazzo...)
-  js/render/localRenderer.js  the free preview renderer
-  js/render/furniture.js    furniture planning (metres) and 3D models (three.js)
-  js/render/engine.js       one "render this photo" entry point for all engines
-  js/three/house.js         3D house and walkthrough timeline
-  js/three/videoExport.js   MP4 export (WebCodecs + mp4-muxer, ffmpeg fallback)
-  js/ui/*.js                upload panels, workspace, compare slider, room box, element editor, 3D tab
-  samples/                  sample photos (generated by tools/make_samples.py, no licence restrictions)
-server/
-  index.js                  Express server and API
-  prompt.js                 builds AI prompts from the style spec and reference roles
-  providers/                OpenAI, Gemini and Claude adapters
-  video.js                  ffmpeg MP4 fallback
-test/                       unit tests (npm test)
+public/            the web app (plain ES modules, no build step)
+  js/render/       free preview renderer, materials, furniture, style specs
+  js/three/        3D house, walkthrough, MP4 export
+  js/ui/           panels, compare slider, room box, element editor
+server/            Express server: AI providers, prompts, ffmpeg video fallback
+docs/              user guide, architecture, launch kit, images
+scripts/           static build for GitHub Pages
+test/              unit tests (npm test)
+tools/             sample photo generator
 ```
-
-**Free preview renderer.** A photo taken facing a wall is treated as a camera standing in a box. From the far-wall rectangle, the vanishing point and an assumed camera height of 1.5 m, the app works out which surface every pixel shows and where it is in metres. Each surface is repainted with its material in correct perspective (with mip-mapping so distant floors don't shimmer), then multiplied by the photo's own smoothed lighting, so window light and shadows stay where they were. Furniture is planned in metres and rendered with three.js through the same virtual camera, so it sits in the room with soft shadows. A final grade sets white balance, exposure, bloom and vignette.
-
-**3D house.** Each room is a box textured by projecting its finished image back from where the photo was taken. The free renderer also produces a wider, furniture-free version of the finishes for this. Free-preview rooms get their real 3D furniture. Surfaces the photo never saw are left open, giving a dollhouse cutaway.
 
 ## Development
 
 ```bash
-npm run dev   # restarts the server when files change
-npm test      # unit tests: geometry, quality checks, styles, conflicts, furniture planning, prompts, provider adapters
+npm run dev            # server with auto-restart
+npm test               # unit tests (geometry, styles, conflicts, furniture, prompts, AI adapters)
+npm run build:static   # static site in dist/
 ```
-
-`python3 tools/make_samples.py` regenerates the sample images (needs numpy and Pillow).
 
 ## Disclaimer
 
-Images, videos and 3D models from this app are visual previews for homeowners and small contractors. They are not architectural, structural, electrical, plumbing or engineering drawings, and room sizes are rough estimates. Always consult qualified professionals before building. Reference images are used for style only; the app does not copy trademarked products or logos.
+Images, videos and 3D models from this app are **visual previews** for homeowners and small contractors. They are not architectural, structural, electrical, plumbing or engineering drawings, and room sizes are estimates. Reference images are used for style only; the app does not copy trademarked products or logos.
 
-## Licence
+## Acknowledgements
 
-MIT, see [LICENSE](LICENSE).
+Built with [three.js](https://threejs.org), [mp4-muxer](https://github.com/Vanilagy/mp4-muxer) and [Express](https://expressjs.com). Sample photos are generated procedurally by [`tools/make_samples.py`](tools/make_samples.py), so they carry no licence restrictions.
+
+## License
+
+[MIT](LICENSE) © roshanshaji786
+
+<div align="center">
+
+**If this helped you picture your future home, please ⭐ star the repo. It helps others find it.**
+
+</div>

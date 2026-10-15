@@ -79,7 +79,7 @@ function renderProjectBar() {
   const providers = store.config.providers;
   engine.replaceChildren(
     ...Object.entries(providers).map(([id, p]) => h('option', { value: id, selected: store.project.engine === id, disabled: !p.available },
-      `${p.label ?? id}${p.available ? '' : ' - needs API key'}`)),
+      `${p.label ?? id}${p.available || store.config.static ? '' : ' - needs API key'}`)),
   );
 }
 

@@ -1,18 +1,42 @@
 {
   "name": "home-finish-visualizer",
   "version": "1.0.0",
-  "description": "Turn photos of an unfinished house into finished, styled renders, a 3D walkthrough and an MP4 video.",
+  "description": "See your unfinished house finished: turn photos of bare walls into styled renders with a before/after slider, single-element edits, a 3D walkthrough and MP4 export. Free in-browser preview plus optional OpenAI/Gemini renders.",
+  "keywords": [
+    "home renovation",
+    "interior design",
+    "construction visualization",
+    "before and after",
+    "room makeover",
+    "unfinished house",
+    "3d walkthrough",
+    "three.js",
+    "virtual staging",
+    "ai interior design",
+    "house exterior",
+    "webcodecs"
+  ],
+  "homepage": "https://roshanshaji786.github.io/house_baithul_hamd/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roshanshaji786/house_baithul_hamd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/roshanshaji786/house_baithul_hamd/issues"
+  },
+  "author": "roshanshaji786 (https://github.com/roshanshaji786)",
+  "license": "MIT",
   "type": "module",
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "build:static": "node scripts/build-static.mjs"
   },
   "engines": {
     "node": ">=20.12"
   },
-  "license": "MIT",
   "private": true,
   "dependencies": {
     "@anthropic-ai/sdk": "^0.134.0",

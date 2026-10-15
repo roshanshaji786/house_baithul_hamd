@@ -170,7 +170,7 @@ export async function renderPhoto(photo, { element = null, note = '', onStatus =
       scaled.getContext('2d').drawImage(mask, 0, 0, scaled.width, scaled.height);
       body.mask = await blobToDataUrl(await canvasToBlob(scaled, 'image/png'));
     }
-    const response = await fetch('/api/render', {
+    const response = await fetch('api/render', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
@@ -232,7 +232,7 @@ export async function runAiReferenceCheck(photo) {
       })),
     ),
   };
-  const response = await fetch('/api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const response = await fetch('api/analyze', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const json = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(json.error ?? 'The AI reference check failed.');
   store.update(() => {

@@ -109,7 +109,8 @@ async function ensureHouse(force = false) {
       house = next;
       houseKey = key;
       timeline = buildTimeline(house, store.project.name, Number($('#video-speed').value));
-      time = Math.min(time, timeline.duration);
+      // Show a "poster" frame just after the opening fade-in rather than black.
+      time = time === 0 ? Math.min(1, timeline.duration) : Math.min(time, timeline.duration);
       setupExplore();
       drawPreview();
     } catch (error) {

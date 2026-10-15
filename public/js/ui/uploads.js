@@ -89,7 +89,7 @@ export async function loadSamples() {
   ];
   const files = [];
   for (const s of samples) {
-    const blob = await (await fetch(`/samples/${s.file}`)).blob();
+    const blob = await (await fetch(`samples/${s.file}`)).blob();
     const file = new File([blob], s.name, { type: 'image/jpeg' });
     file.fit = s.fit;
     file.roomType = s.roomType;
@@ -102,7 +102,7 @@ export async function loadSamples() {
 export async function loadSampleReferences() {
   const files = [];
   for (const [file, name, role] of [['ref-oak-floor.jpg', 'Oak floor sample.jpg', 'flooring'], ['ref-palette.jpg', 'Earthy palette.jpg', 'palette']]) {
-    const blob = await (await fetch(`/samples/${file}`)).blob();
+    const blob = await (await fetch(`samples/${file}`)).blob();
     const f = new File([blob], name, { type: 'image/jpeg' });
     f.role = role;
     files.push(f);

@@ -1,0 +1,16 @@
+name: Feature or style request
+description: Suggest an idea, a new style preset, a material or an improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+      description: Describe the idea and who it would help (homeowners, contractors, designers…).
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or references
+      description: Links or images of the style, material or feature (style references only, please; no copyrighted product photos).

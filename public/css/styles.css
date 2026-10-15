@@ -312,6 +312,19 @@ main { padding: 0.75rem 16px 2rem; max-width: 1500px; margin: 0 auto; }
 .gallery figcaption { padding: 0.5rem 0.6rem; display: grid; gap: 0.35rem; font-size: 0.82rem; }
 .gallery .actions .btn { flex: 1; }
 
+/* ---------- About / FAQ ---------- */
+.about { max-width: 1500px; margin: 0 auto; padding: 1.5rem 16px 0.5rem; }
+.about > h2 { font-size: 1.35rem; display: block; }
+.about > p { max-width: 60rem; color: var(--muted); }
+.about-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1rem 0; }
+.about-grid > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+.about-grid h3 { margin-top: 0; }
+.about-grid p { color: var(--muted); font-size: 0.92rem; }
+.about details { border-bottom: 1px solid var(--border); padding: 0.55rem 0; max-width: 60rem; }
+.about summary { cursor: pointer; font-weight: 600; }
+.about details p { color: var(--muted); margin: 0.4rem 0 0.2rem; }
+.about a, .footer a { color: var(--accent); }
+
 /* ---------- Footer, toasts ---------- */
 .footer { padding: 1rem 16px 2rem; max-width: 1500px; margin: 0 auto; font-size: 0.85rem; color: var(--muted); }
 .toasts { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); display: grid; gap: 0.5rem; z-index: 50; width: min(92vw, 30rem); }

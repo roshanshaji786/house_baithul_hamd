@@ -1,8 +1,10 @@
 {
-  "name": "home-finish-visualizer",
+  "name": "shell-to-home",
   "version": "1.0.0",
-  "description": "See your unfinished house finished: turn photos of bare walls into styled renders with a before/after slider, single-element edits, a 3D walkthrough and MP4 export. Free in-browser preview plus optional OpenAI/Gemini renders.",
+  "description": "Shell to Home: see your bare-shell house finished. Turn photos of bare walls into styled renders with a before/after slider, single-element edits, a 3D walkthrough and MP4 export. Free in-browser preview plus optional OpenAI/Gemini renders.",
   "keywords": [
+    "shell to home",
+    "bare shell",
     "home renovation",
     "interior design",
     "construction visualization",

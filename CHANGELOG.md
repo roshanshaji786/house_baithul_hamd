@@ -4,7 +4,7 @@ All notable changes to this project are listed here. Versions follow [Semantic V
 
 ## [1.0.0] - 2026-10-15
 
-First public release.
+First public release of **Shell to Home**.
 
 ### Added
 - Photo uploads with drag and drop, thumbnails, and checks for small, dark, blurry or unclear images (plus a HEIC tip).

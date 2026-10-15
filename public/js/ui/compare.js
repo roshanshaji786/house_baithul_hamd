@@ -74,7 +74,7 @@ export async function comparisonImage(beforeBlob, afterBlob, caption) {
   ctx.fillText('After', wa + gap + 16, height + 36);
   ctx.font = '16px system-ui, sans-serif';
   ctx.fillStyle = '#666';
-  const note = `${caption} · Visual preview only, not a construction plan`;
+  const note = `${caption} · Made with Shell to Home · visual preview, not a construction plan`;
   ctx.fillText(note, canvas.width - ctx.measureText(note).width - 16, height + 36);
   return new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.92));
 }

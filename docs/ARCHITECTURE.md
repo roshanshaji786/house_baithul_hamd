@@ -1,6 +1,6 @@
 # Architecture
 
-How Home Finish Visualizer works under the hood. For using the app, see the [user guide](USER_GUIDE.md).
+How Shell to Home works under the hood. For using the app, see the [user guide](USER_GUIDE.md).
 
 - [Overview](#overview)
 - [Code map](#code-map)

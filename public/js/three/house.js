@@ -315,6 +315,9 @@ export function drawOverlay(ctx, width, height, overlay, title) {
     ctx.font = `${Math.round(22 * s)}px system-ui, sans-serif`;
     ctx.fillStyle = '#ddd';
     ctx.fillText('Visual preview only - not a construction or engineering plan', width / 2, height / 2 + 34 * s);
+    ctx.font = `600 ${Math.round(20 * s)}px system-ui, sans-serif`;
+    ctx.fillStyle = '#9fd3cd';
+    ctx.fillText('Made with Shell to Home', width / 2, height / 2 + 72 * s);
     ctx.textAlign = 'start';
   }
   if (overlay.fade > 0) {

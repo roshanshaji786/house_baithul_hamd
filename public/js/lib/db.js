@@ -3,6 +3,7 @@
  * and saved renders as Blobs) are stored in the browser, so nothing is
  * uploaded anywhere unless an AI engine is used.
  */
+// Internal name from the app's first version; kept so saved projects keep loading.
 const DB_NAME = 'home-finish-visualizer';
 const VERSION = 1;
 let dbPromise = null;

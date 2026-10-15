@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🏠 Home Finish Visualizer
+# 🏠 Shell to Home
 
-### See your unfinished house finished, before you spend a rupee, dollar or dirham.
+### See your bare-shell house finished – before you spend a rupee, dollar or dirham.
 
 Turn a phone photo of bare brick, concrete and empty floors into a **finished, styled home**.<br>
 Compare **before and after**, change **one element at a time**, then **walk through it in 3D** and download the video.
@@ -29,7 +29,9 @@ Compare **before and after**, change **one element at a time**, then **walk thro
 
 Building a house takes years, and the hardest part is **imagining the finished home while you're standing in a shell of bare blockwork**. Which floor? What colour? Will a dark feature wall make the room feel small? Interior designers and 3D visualisers are expensive, and most "AI interior" apps need an account, upload your photos to a server, and ignore the room you actually have.
 
-**Home Finish Visualizer** works with *your* photos and *your* room's real shape. It runs free in your browser, and your photos never leave your device. The repository is named after *Baithul Hamd*, the house it was made for.
+**Shell to Home** takes you from that bare shell to a finished home on screen. It works with *your* photos and *your* room's real shape. It runs free in your browser, and your photos never leave your device. The repository is named after *Baithul Hamd*, the house it was made for.
+
+> **Why "Shell to Home"?** Builders call a house with walls and a roof but no finishes a *bare shell*. This app shows the journey from shell to home, before the first tile is laid.
 
 ## One photo, five styles
 
@@ -218,6 +220,6 @@ Built with [three.js](https://threejs.org), [mp4-muxer](https://github.com/Vanil
 
 <div align="center">
 
-**If this helped you picture your future home, please ⭐ star the repo. It helps others find it.**
+**If Shell to Home helped you picture your future home, please ⭐ star the repo and share your before/after with `#ShellToHome`.**
 
 </div>

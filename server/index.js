@@ -1,5 +1,5 @@
 /**
- * Home Finish Visualizer - web server.
+ * Shell to Home - web server.
  *
  * Serves the single-page app from /public and exposes a small JSON API:
  *   GET  /api/config        which optional paid services are configured
@@ -153,7 +153,7 @@ app.listen(config.port, config.host, () => {
   const caps = publicCapabilities();
   const on = (flag) => (flag ? 'on' : 'off (no key)');
   const shown = ['127.0.0.1', '::1', 'localhost'].includes(config.host) ? 'localhost' : config.host;
-  console.log(`\nHome Finish Visualizer running at http://${shown}:${config.port}\n`);
+  console.log(`\nShell to Home running at http://${shown}:${config.port}\n`);
   console.log(`  Free preview renderer : on`);
   console.log(`  OpenAI renders        : ${on(caps.providers.openai.available)}`);
   console.log(`  Gemini renders        : ${on(caps.providers.gemini.available)}`);

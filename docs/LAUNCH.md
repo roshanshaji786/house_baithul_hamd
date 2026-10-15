@@ -1,6 +1,6 @@
 # Launch kit
 
-Everything needed to publish Home Finish Visualizer and help people find it: a go-live checklist, search and social settings, and ready-to-post copy for each platform. Edit the posts into your own voice. Real stories ("I'm building my house and…") travel much further than feature lists.
+Everything needed to publish **Shell to Home** and help people find it: a go-live checklist, search and social settings, and ready-to-post copy for each platform. Edit the posts into your own voice. Real stories ("I'm building my house and…") travel much further than feature lists.
 
 **Links used below**
 - Live demo: https://roshanshaji786.github.io/house_baithul_hamd/
@@ -14,13 +14,14 @@ Everything needed to publish Home Finish Visualizer and help people find it: a g
 2. **Turn on the live demo:** *Settings › Pages › Build and deployment › Source: **GitHub Actions***. Then open *Actions › Deploy live demo › Run workflow* (it also runs on every push to `main`). After a minute or two the demo is live at the URL above.
 3. **Fill in the "About" box** (gear icon next to *About* on the repo page):
    - **Description:**
-     > See your unfinished house finished. Turn photos of bare walls into styled rooms with a before/after slider, 5 styles, reference images, one-element edits and a 3D walkthrough with MP4 export. Free, private, runs in your browser.
+     > Shell to Home: see your bare-shell house finished. Turn photos of bare walls into styled rooms with a before/after slider, 5 styles, reference images, one-element edits and a 3D walkthrough with MP4 export. Free, private, runs in your browser.
    - **Website:** `https://roshanshaji786.github.io/house_baithul_hamd/`
    - **Topics** (GitHub search weighs these heavily):
-     `home-renovation` `interior-design` `house-design` `construction` `before-and-after` `room-planner` `virtual-staging` `ai-interior-design` `3d-walkthrough` `threejs` `webgl` `webcodecs` `image-editing` `openai` `gemini` `claude` `javascript` `nodejs` `open-source` `indian-interior-design`
+     `shell-to-home` `bare-shell` `home-renovation` `interior-design` `house-design` `construction` `before-and-after` `room-planner` `virtual-staging` `ai-interior-design` `3d-walkthrough` `threejs` `webgl` `webcodecs` `image-editing` `openai` `gemini` `claude` `javascript` `nodejs` `open-source` `indian-interior-design`
 4. **Social preview image:** *Settings › General › Social preview › Edit › Upload* `docs/images/social-preview.jpg`. This is the card shown when the repo link is shared.
 5. **Create a release:** *Releases › Draft a new release*, tag `v1.0.0`, title "v1.0.0 – See your unfinished house finished", paste the notes from `CHANGELOG.md`, and attach a walkthrough MP4 made in the app. Releases appear in followers' feeds.
 6. **Pin the repository** on your GitHub profile (*Customize your pins*).
+   - **Optional: rename the repository to `shell-to-home`** (*Settings › General › Repository name*) so the name matches everywhere. Do it **before** you share any links: GitHub redirects old repository links, but the live-demo address changes to `https://roshanshaji786.github.io/shell-to-home/`. Afterwards, replace `house_baithul_hamd` with `shell-to-home` in the README, `docs/`, `public/index.html`, `public/robots.txt`, `public/sitemap.xml`, `package.json` and `scripts/build-static.mjs`. The deploy workflow picks up the new name by itself.
 7. **Google Search Console:** add a *URL prefix* property for the demo URL. Verify it by downloading Google's HTML verification file into `public/` and pushing. Then submit `sitemap.xml` and request indexing for the homepage. Do the same in **Bing Webmaster Tools**.
 8. Check the share card with the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) and by pasting the link into a WhatsApp chat.
 
@@ -37,9 +38,9 @@ Lead with the **before/after GIF** (`docs/images/before-after-slider.gif`) or th
 
 ### X / Twitter thread
 
-> **1/** I'm building a house, and the hardest part is imagining it finished while standing in bare brick and concrete.
+> **1/** I'm building a house, and the hardest part is imagining it finished while standing in a bare shell of brick and concrete.
 >
-> So I built a free tool: upload a photo of an unfinished room → see it finished in your style. 👇
+> So I built Shell to Home, a free tool: upload a photo of an unfinished room → see it finished in your style. 👇
 > [before/after GIF]
 >
 > **2/** One photo, five styles: modern minimalist, Scandinavian, luxury, Indian modern, industrial loft.
@@ -58,15 +59,15 @@ Lead with the **before/after GIF** (`docs/images/before-after-slider.gif`) or th
 >
 > **7/** Built with three.js, WebCodecs and a lot of perspective maths. Optional photo-real renders with OpenAI/Gemini if you self-host. Feedback and ⭐ very welcome!
 >
-> #buildinpublic #opensource #interiordesign #homerenovation #threejs
+> #ShellToHome #buildinpublic #opensource #interiordesign #homerenovation #threejs
 
 ### LinkedIn
 
-> 🏠 **I built a free tool that shows your unfinished house… finished.**
+> 🏠 **I built Shell to Home, a free tool that shows your bare-shell house… finished.**
 >
 > Anyone who has built a home knows the problem: you stand in bare blockwork and have to pick floors, paint and lighting by imagination. Visualisers are expensive, and most "AI interior" apps want your photos on their servers.
 >
-> Home Finish Visualizer:
+> Shell to Home:
 > ✅ Turns a phone photo of an unfinished room (or the house exterior) into a finished, styled space
 > ✅ 5 styles, or your own reference images with roles (flooring, kitchen, palette…)
 > ✅ Before/after slider and one-element-at-a-time edits
@@ -76,11 +77,11 @@ Lead with the **before/after GIF** (`docs/images/before-after-slider.gif`) or th
 > Homeowners and small contractors: I'd love your feedback.
 > 👉 https://roshanshaji786.github.io/house_baithul_hamd/
 >
-> #construction #interiordesign #homebuilding #proptech #opensource #webdevelopment
+> #ShellToHome #construction #interiordesign #homebuilding #proptech #opensource
 
 ### Hacker News (Show HN)
 
-**Title:** `Show HN: See your unfinished house finished – in-browser renders and 3D walkthrough`
+**Title:** `Show HN: Shell to Home – see your unfinished house finished, in the browser`
 
 > I'm building a house and wanted to preview finishes on the actual rooms, from phone photos of bare walls. This is a free web app that fits a "room box" to a single photo (far wall + vanishing point), repaints floor/walls/ceiling with procedural materials multiplied by the photo's own smoothed lighting, places three.js furniture in metric space (avoiding detected doorways), and projects the result back onto a 3D box for a walkthrough ("tour into the picture"). The MP4 is encoded in the browser with WebCodecs + mp4-muxer.
 >
@@ -97,12 +98,12 @@ Read each subreddit's self-promotion rules first; some only allow it on certain 
 - **r/SideProject, r/webdev, r/javascript, r/threejs, r/opensource**: use the Show HN text, adjusted to each audience.
 - **r/HomeImprovement, r/HomeBuilding, r/InteriorDesign, r/IndianHomes**: lead with the problem and the before/after image, mention it's free and private, and ask for feedback rather than upvotes.
 
-**Title idea:** *I made a free tool that shows your unfinished room finished (works from a phone photo, nothing uploaded)*
+**Title idea:** *I made Shell to Home, a free tool that shows your bare-shell room finished (works from a phone photo, nothing uploaded)*
 
 ### Product Hunt
 
-- **Name:** Home Finish Visualizer
-- **Tagline (≤ 60 characters):** `See your unfinished house finished – free, in your browser`
+- **Name:** Shell to Home
+- **Tagline (≤ 60 characters):** `See your bare-shell house finished – free, in your browser`
 - **Description:** Upload a photo of bare walls and see the room finished in your style. Before/after slider, one-element edits, 3D walkthrough and MP4 video. No sign-up; photos never leave your device.
 - **Gallery:** social preview, before/after GIF, five-styles image, bedroom/kitchen/exterior pairs, walkthrough GIF.
 - **First comment:** the "why" story, what's free versus optional, and a question for hunters ("what style should we add next?").
@@ -116,11 +117,11 @@ Screen-record the app on a phone (9:16):
 4. Play the 3D walkthrough.
 5. End card: "Free – link in bio".
 
-**Caption:** *Can't picture your unfinished house? I built a free tool that shows it finished – in 5 styles, plus a 3D walkthrough 🏠✨ Link in bio. #homebuilding #interiordesign #beforeandafter #houseconstruction #homedecor*
+**Caption:** *Can't picture your bare-shell house finished? Shell to Home shows it – in 5 styles, plus a 3D walkthrough 🏠✨ Free, link in bio. #ShellToHome #homebuilding #interiordesign #beforeandafter #houseconstruction*
 
 ### WhatsApp / Facebook groups (house builders, contractors, family)
 
-> Building or renovating? This free tool shows your unfinished room finished, from just a phone photo. Try different floors, paint and lighting, then download a 3D walkthrough video. Nothing gets uploaded. https://roshanshaji786.github.io/house_baithul_hamd/
+> Building or renovating? Shell to Home is a free tool that shows your bare-shell room finished, from just a phone photo. Try different floors, paint and lighting, then download a 3D walkthrough video. Nothing gets uploaded. https://roshanshaji786.github.io/house_baithul_hamd/
 
 ## 4. Tips
 

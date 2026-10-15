@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping make Home Finish Visualizer better! Bug reports, ideas, new styles, translations, docs and code are all welcome.
+Thanks for helping make Shell to Home better! Bug reports, ideas, new styles, translations, docs and code are all welcome.
 
 ## Ways to help
 

@@ -1,7 +1,7 @@
 {
-  "name": "Home Finish Visualizer",
-  "short_name": "Home Finish",
-  "description": "See your unfinished house finished: styled renders, before/after slider and a 3D walkthrough.",
+  "name": "Shell to Home",
+  "short_name": "Shell to Home",
+  "description": "See your bare-shell house finished: styled renders, before/after slider and a 3D walkthrough.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

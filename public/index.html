@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Upload photos of an unfinished house and see it finished in your style, then walk through it in 3D.">
+  <title>Home Finish Visualizer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 15 16 5l12 10v12H4z' fill='%231f6f6b'/%3E%3Crect x='13' y='18' width='6' height='9' fill='%23f4efe6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Browser libraries are served from node_modules by the local server. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/build/three.module.js",
+      "three/addons/": "/vendor/three/addons/",
+      "mp4-muxer": "/vendor/mp4-muxer/mp4-muxer.mjs"
+    }
+  }
+  </script>
+  <script type="module" src="/js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15 16 5l12 10v12H4z" fill="currentColor"/><rect x="13" y="18" width="6" height="9" fill="var(--surface)"/></svg>
+      <span>Home Finish Visualizer</span>
+    </div>
+    <div class="project-bar">
+      <label class="sr-only" for="project-select">Project</label>
+      <select id="project-select" title="Switch project"></select>
+      <button class="icon-btn" id="project-new" type="button" title="New project" aria-label="New project">＋</button>
+      <button class="icon-btn" id="project-rename" type="button" title="Rename project" aria-label="Rename project">✎</button>
+      <button class="icon-btn" id="project-delete" type="button" title="Delete project" aria-label="Delete project">🗑</button>
+    </div>
+    <div class="engine-bar">
+      <label for="engine-select">Render engine</label>
+      <select id="engine-select"></select>
+    </div>
+  </header>
+
+  <div class="disclaimer" id="disclaimer" role="note">
+    <strong>Visual preview only.</strong>
+    Renders show how finishes could look. They are not structural, engineering or construction plans, and sizes are rough estimates.
+    Check anything structural, electrical or plumbing with a qualified professional.
+    <button type="button" class="link-btn" id="disclaimer-hide">Hide</button>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" id="tab-btn-design" aria-controls="tab-design" aria-selected="true" data-tab="design">Design</button>
+    <button role="tab" id="tab-btn-house" aria-controls="tab-house" aria-selected="false" data-tab="house">3D house &amp; video</button>
+    <button role="tab" id="tab-btn-saved" aria-controls="tab-saved" aria-selected="false" data-tab="saved">Saved <span class="count" id="saved-count">0</span></button>
+  </nav>
+
+  <main id="main">
+    <!-- ======================= DESIGN ======================= -->
+    <section id="tab-design" role="tabpanel" aria-labelledby="tab-btn-design" class="design-grid">
+      <aside class="inputs">
+        <section class="card" aria-labelledby="photos-title">
+          <div class="card-head">
+            <h2 id="photos-title"><span class="step">1</span> Photos of your space</h2>
+            <button type="button" class="link-btn" id="load-samples">Try sample photos</button>
+          </div>
+          <div class="dropzone" id="photo-drop" tabindex="0" role="button" aria-describedby="photo-drop-help">
+            <input type="file" id="photo-input" accept="image/*" multiple hidden>
+            <p><strong>Drag photos here</strong> or click to choose</p>
+            <p class="muted" id="photo-drop-help">Bare walls, exposed concrete or brick, empty floors. For best results stand in a doorway and face the far wall straight on.</p>
+          </div>
+          <ul class="file-list" id="photo-list" aria-label="Uploaded photos"></ul>
+        </section>
+
+        <section class="card" aria-labelledby="style-title">
+          <h2 id="style-title"><span class="step">2</span> Style</h2>
+          <h3>Reference images <span class="muted">(optional, up to 5)</span></h3>
+          <div class="dropzone small" id="ref-drop" tabindex="0" role="button" aria-describedby="ref-drop-help">
+            <input type="file" id="ref-input" accept="image/*" multiple hidden>
+            <p><strong>Add references</strong>: a room you like, a floor sample, a colour palette…</p>
+            <p class="muted" id="ref-drop-help">Give each one a role so the app knows what it controls. Used for style only.</p>
+          </div>
+          <ul class="file-list refs" id="ref-list" aria-label="Reference images"></ul>
+          <div id="ai-check-box" hidden>
+            <button type="button" class="btn secondary small" id="ai-check">Check references with AI</button>
+            <span class="muted">Claude looks for layout or scale conflicts (paid).</span>
+          </div>
+
+          <h3 id="preset-title">Preset style</h3>
+          <p class="muted" id="preset-help">Pick a look for your space.</p>
+          <div class="style-grid" id="style-grid" role="radiogroup" aria-labelledby="preset-title"></div>
+        </section>
+      </aside>
+
+      <section class="workspace card" aria-labelledby="workspace-title">
+        <div class="workspace-head">
+          <div>
+            <h2 id="workspace-title"><span class="step">3</span> <span id="workspace-photo-name">Your finished space</span></h2>
+            <p class="muted small" id="room-size"></p>
+          </div>
+          <div class="toolbar">
+            <label class="inline">Room
+              <select id="room-type"></select>
+            </label>
+            <button type="button" class="btn secondary" id="fit-toggle" aria-pressed="false">Adjust room box</button>
+            <button type="button" class="btn primary" id="render-btn">Render</button>
+          </div>
+        </div>
+
+        <div class="stale" id="stale-banner" hidden>
+          <span>Settings changed since this render.</span>
+          <button type="button" class="btn small primary" id="stale-update">Update render</button>
+          <label class="inline small"><input type="checkbox" id="auto-update"> Update automatically</label>
+        </div>
+
+        <div class="viewer" id="viewer">
+          <div class="empty" id="viewer-empty">
+            <p><strong>Add a photo to begin.</strong></p>
+            <p class="muted">Then choose a style or add reference images and press Render. The free preview runs entirely in your browser.</p>
+          </div>
+        </div>
+
+        <div class="progress" id="progress" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <span id="progress-text">Rendering…</span>
+        </div>
+        <div class="error-box" id="render-error" role="alert" hidden></div>
+
+        <div class="viewer-controls" id="viewer-controls" hidden>
+          <div class="segmented" role="group" aria-label="Comparison view">
+            <button type="button" data-compare="slider" aria-pressed="true">Slider</button>
+            <button type="button" data-compare="side" aria-pressed="false">Side by side</button>
+            <button type="button" data-compare="after" aria-pressed="false">After only</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn secondary" id="save-btn">Save</button>
+            <button type="button" class="btn secondary" id="download-btn">Download</button>
+            <button type="button" class="btn secondary" id="download-compare-btn">Download before/after</button>
+          </div>
+        </div>
+
+        <div class="render-info" id="render-info"></div>
+
+        <details class="card inset" id="editor" open>
+          <summary><h3>Edit one element</h3><span class="muted small">Change just the floor, the walls, the cabinets… everything else stays the same.</span></summary>
+          <div class="element-tabs" id="element-tabs" role="tablist" aria-label="Elements"></div>
+          <div class="element-form" id="element-form"></div>
+        </details>
+
+        <div class="history" id="history" aria-label="Render history"></div>
+      </section>
+    </section>
+
+    <!-- ======================= 3D HOUSE ======================= -->
+    <section id="tab-house" role="tabpanel" aria-labelledby="tab-btn-house" hidden>
+      <div class="house-grid">
+        <section class="card house-viewer-card" aria-labelledby="house-title">
+          <div class="card-head">
+            <h2 id="house-title">3D house &amp; walkthrough</h2>
+            <div class="segmented" role="group" aria-label="3D view mode">
+              <button type="button" data-house-mode="walk" aria-pressed="true">Walkthrough</button>
+              <button type="button" data-house-mode="explore" aria-pressed="false">Explore</button>
+            </div>
+          </div>
+          <div class="house-stage" id="house-stage">
+            <div class="empty" id="house-empty">
+              <p><strong>Render at least one room first.</strong></p>
+              <p class="muted">The 3D house is built from your photos and uses the same style and references as your renders.</p>
+            </div>
+          </div>
+          <div class="player" id="house-player" hidden>
+            <button type="button" class="btn icon" id="house-play" aria-label="Play">▶</button>
+            <input type="range" id="house-scrub" min="0" max="1000" value="0" aria-label="Walkthrough position">
+            <span class="muted small" id="house-time">0:00 / 0:00</span>
+          </div>
+        </section>
+        <aside class="card house-side">
+          <h3>Rooms in the walkthrough</h3>
+          <p class="muted small">Each rendered photo becomes a room. Use the arrows to reorder; untick to leave a room out.</p>
+          <ol class="room-order" id="room-order"></ol>
+          <button type="button" class="btn secondary small" id="house-rebuild">Rebuild 3D house</button>
+
+          <h3>Video</h3>
+          <div class="form-row">
+            <label for="video-quality">Quality</label>
+            <select id="video-quality">
+              <option value="720">720p (faster)</option>
+              <option value="1080">1080p</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="video-speed">Pace</label>
+            <select id="video-speed">
+              <option value="1.25">Relaxed</option>
+              <option value="1" selected>Normal</option>
+              <option value="0.75">Quick</option>
+            </select>
+          </div>
+          <button type="button" class="btn primary" id="video-btn">Download walkthrough MP4</button>
+          <div class="video-progress" id="video-progress" hidden>
+            <progress id="video-bar" max="100" value="0"></progress>
+            <span id="video-status" class="small">Preparing…</span>
+            <button type="button" class="link-btn" id="video-cancel">Cancel</button>
+          </div>
+          <button type="button" class="btn secondary small" id="glb-btn">Download 3D model (.glb)</button>
+          <p class="muted small">The 3D house is a simplified model made from your photos: each room is a box textured with its finished render, with 3D furniture from the free preview. It is for visualising, not for measurements.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================= SAVED ======================= -->
+    <section id="tab-saved" role="tabpanel" aria-labelledby="tab-btn-saved" hidden>
+      <div class="card">
+        <h2>Saved renders</h2>
+        <p class="muted">Renders you save are kept in this browser with the project.</p>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Disclaimer:</strong> images and videos from this app are visual previews for homeowners and small contractors. They are not architectural, structural or engineering drawings. Reference images are used for style only; the app does not reproduce trademarked products or logos.</p>
+    <p class="muted small">Your photos stay in this browser. They are only sent to an AI service when you choose a paid render engine.</p>
+  </footer>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+</body>
+</html>

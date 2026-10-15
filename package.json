@@ -1,0 +1,23 @@
+{
+  "name": "home-finish-visualizer",
+  "version": "1.0.0",
+  "description": "Turn photos of an unfinished house into finished, styled renders, a 3D walkthrough and an MP4 video.",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0",
+    "express": "^5.3.0",
+    "mp4-muxer": "^5.2.2",
+    "three": "^0.186.1"
+  }
+}

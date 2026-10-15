@@ -74,7 +74,11 @@ export async function comparisonImage(beforeBlob, afterBlob, caption) {
   ctx.fillText('After', wa + gap + 16, height + 36);
   ctx.font = '16px system-ui, sans-serif';
   ctx.fillStyle = '#666';
-  const note = `${caption} · Made with Shell to Home · visual preview, not a construction plan`;
+  // Truncate the note so it can never run off the right edge.
+  const maxWidth = canvas.width - (wa + gap + 86);
+  let note = `${caption} · Made with Shell to Home · visual preview, not a construction plan`;
+  while (note.length > 8 && ctx.measureText(note).width > maxWidth) note = `${note.slice(0, -2)}…`;
   ctx.fillText(note, canvas.width - ctx.measureText(note).width - 16, height + 36);
-  return new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+  return new Promise((resolve, reject) =>
+    canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Could not encode the before/after image'))), 'image/jpeg', 0.92));
 }

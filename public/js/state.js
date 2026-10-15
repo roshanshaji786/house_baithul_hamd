@@ -122,8 +122,11 @@ export const store = {
     this.ui.photoId = this.project.photos[0]?.id ?? null;
   },
 
-  async switchProject(id) {
-    await this.save();
+  async switchProject(id, { save = true } = {}) {
+    // Only persist the outgoing project when it still exists: right after a
+    // deletion `this.project` points at a project that is no longer in the
+    // database, and saving it would resurrect it.
+    if (save) await this.save();
     const project = await db.getProject(id);
     if (!project) return;
     this.project = migrate(project);
@@ -133,8 +136,8 @@ export const store = {
     this.emit('project-switch');
   },
 
-  async createProject(name) {
-    await this.save();
+  async createProject(name, { saveFirst = true } = {}) {
+    if (saveFirst) await this.save();
     this.project = newProject(name);
     this.ui.photoId = null;
     this.ui.renderId = {};
@@ -146,8 +149,10 @@ export const store = {
     const id = this.project.id;
     await db.deleteProject(id);
     this.projects = await db.listProjects();
-    if (this.projects[0]) await this.switchProject(this.projects[0].id);
-    else await this.createProject('My house');
+    // Switch without saving: the current (deleted) project must not be
+    // written back to the database.
+    if (this.projects[0]) await this.switchProject(this.projects[0].id, { save: false });
+    else await this.createProject('My house', { saveFirst: false });
   },
 
   get photo() {
@@ -159,6 +164,8 @@ export const store = {
 function migrate(project) {
   project.house ??= { order: [] };
   project.renders ??= [];
+  project.photos ??= [];
+  project.references ??= [];
   for (const p of project.photos) {
     p.overrides ??= {};
     p.fit ??= defaultFit();

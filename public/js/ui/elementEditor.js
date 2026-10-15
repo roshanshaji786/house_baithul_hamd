@@ -14,6 +14,7 @@ import { h } from './dom.js';
 
 let selected = 'flooring';
 let draft = null; // pending patch for the selected element
+let draftPhotoId = null; // the photo the draft was started on
 
 /** Small swatch canvas for a material option. */
 const swatchCache = new Map();
@@ -200,6 +201,12 @@ export async function renderElementEditor(onApply) {
   }
   const available = ELEMENTS.filter((e) => e.id !== 'cabinets' || ['kitchen', 'bathroom'].includes(photo.roomType));
   if (!available.some((e) => e.id === selected)) selected = 'flooring';
+  // A draft belongs to the photo it was made on; switching photos discards it
+  // so one photo's pending change is never applied to another.
+  if (draftPhotoId !== photo.id) {
+    draft = null;
+    draftPhotoId = photo.id;
+  }
   const { spec } = await currentDesign(photo);
 
   tabs.replaceChildren(

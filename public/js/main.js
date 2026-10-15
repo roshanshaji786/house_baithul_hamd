@@ -40,7 +40,9 @@ async function start() {
   initUploads();
   initWorkspace();
   initHouse();
-  window.addEventListener('beforeunload', () => store.save());
+  // `pagehide` fires reliably (including on mobile Safari) and earlier than
+  // `beforeunload`, giving the async IndexedDB save its best chance to finish.
+  for (const event of ['pagehide', 'beforeunload']) window.addEventListener(event, () => store.save());
   window.addEventListener('unhandledrejection', (e) => {
     console.error(e.reason);
     toast(e.reason?.message ?? 'Something went wrong.', 'error');

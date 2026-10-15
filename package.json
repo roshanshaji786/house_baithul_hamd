@@ -34,6 +34,8 @@
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
     "test": "node --test test/*.test.js",
+    "test:browser": "node --test test/browser/*.test.mjs",
+    "test:all": "npm test && npm run test:browser",
     "build:static": "node scripts/build-static.mjs"
   },
   "engines": {
@@ -45,5 +47,9 @@
     "express": "^5.3.0",
     "mp4-muxer": "^5.2.2",
     "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "playwright": "^1.55.1"
   }
 }

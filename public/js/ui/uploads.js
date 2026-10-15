@@ -81,6 +81,14 @@ export async function addReferences(files) {
 
 /** Loads the bundled sample photos (pre-fitted room boxes). */
 export async function loadSamples() {
+  // Loading the samples twice would duplicate every photo; select the
+  // existing copies instead.
+  const existing = store.project.photos.find((p) => p.name.startsWith('Living room (sample)'));
+  if (existing) {
+    store.setUi({ photoId: existing.id });
+    toast('The sample photos are already in this project.');
+    return;
+  }
   const samples = [
     { file: 'sample-living.jpg', name: 'Living room (sample).jpg', roomType: 'living', fit: { back: { x0: 0.181, y0: 0.215, x1: 0.831, y1: 0.748 }, vp: { x: 0.5, y: 0.4833 }, lens: 'main', auto: false } },
     { file: 'sample-bedroom.jpg', name: 'Bedroom (sample).jpg', roomType: 'bedroom', fit: { back: { x0: 0.17, y0: 0.187, x1: 0.845, y1: 0.853 }, vp: { x: 0.5, y: 0.508 }, lens: 'main', auto: false } },

@@ -212,7 +212,7 @@ function loop(now) {
 }
 
 function setPlaying(value) {
-  playing = value;
+  playing = Boolean(value) && Boolean(timeline);
   if (playing && time >= timeline.duration - 0.01) time = 0;
   $('#house-play').textContent = playing ? '❚❚' : '▶';
   $('#house-play').setAttribute('aria-label', playing ? 'Pause' : 'Play');
